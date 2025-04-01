@@ -1,1 +1,485 @@
 # Uniswap
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniswap Nest - Sustainable University Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2E8B57;
+            --secondary-green: #3CB371;
+            --light-green: #F0FFF0;
+            --dark-green: #006400;
+            --accent-orange: #FF8C00;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .navbar-brand span:first-child {
+            color: var(--primary-green);
+        }
+        .navbar-brand span:last-child {
+            color: var(--accent-orange);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .eco-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        .btn-outline-primary {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+        }
+        
+        .login-container, .register-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!--        -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span>Uniswap</span><span>Nest</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#loginModal" class="btn btn-outline-primary me-2" data-bs-toggle="modal">Login</a>
+                    <a href="#registerModal" class="btn btn-primary" data-bs-toggle="modal">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--   ¼ģ̬   -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to Uniswap Nest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">University Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="yourname@sussex.ac.uk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Don't have an account? Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ע  ģ̬   -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Join Uniswap Nest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">University Email</label>
+                            <input type="email" class="form-control" id="registerEmail" placeholder="yourname@sussex.ac.uk" required>
+                            <div class="form-text">We only accept university email addresses</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">I agree to the <a href="#">Terms of Service</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ӣ       -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Buy, Sell & Trade Sustainably</h1>
+            <p class="lead mb-5">The trusted marketplace for Sussex University students to give items a second life</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#" class="btn btn-primary btn-lg px-4">Browse Items</a>
+                <a href="#" class="btn btn-outline-light btn-lg px-4">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!--          -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Popular Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Textbooks">
+                        <div class="card-body">
+                            <h5 class="card-title">Textbooks</h5>
+                            <p class="card-text">Save up to 70% on course materials</p>
+                            <span class="eco-badge">Eco-friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Electronics">
+                        <div class="card-body">
+                            <h5 class="card-title">Electronics</h5>
+                            <p class="card-text">Laptops, phones & accessories</p>
+                            <span class="eco-badge">Eco-friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1556909114-44e1cd61696f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Furniture">
+                        <div class="card-body">
+                            <h5 class="card-title">Furniture</h5>
+                            <p class="card-text">Dorm essentials at great prices</p>
+                            <span class="eco-badge">Eco-friendly</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Clothing">
+                        <div class="card-body">
+                            <h5 class="card-title">Clothing</h5>
+                            <p class="card-text">Style sustainably</p>
+                            <span class="eco-badge">Eco-friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  ص      -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Uniswap Nest?</h2>
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4>University Verified</h4>
+                    <p>Only Sussex students can join, ensuring a trusted community</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Eco-Friendly</h4>
+                    <p>Reduce waste and earn eco-points for sustainable actions</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-pound-sign"></i>
+                    </div>
+                    <h4>Save Money</h4>
+                    <p>Get what you need at student-friendly prices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--   Ʒ б  -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Recently Listed Items</h2>
+                <a href="#" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Calculus Textbook">
+                        <div class="card-body">
+                            <h5 class="card-title">Calculus Textbook</h5>
+                            <p class="text-muted">Mathematics - Like New</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">  15.00</h5>
+                                <span class="badge bg-success">Available</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">Listed 2 days ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="MacBook Air">
+                        <div class="card-body">
+                            <h5 class="card-title">MacBook Air 2020</h5>
+                            <p class="text-muted">Electronics - Good Condition</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">  450.00</h5>
+                                <span class="badge bg-success">Available</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">Listed 1 week ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card h-100">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Desk Chair">
+                        <div class="card-body">
+                            <h5 class="card-title">Office Desk Chair</h5>
+                            <p class="text-muted">Furniture - Used</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">  25.00</h5>
+                                <span class="badge bg-success">Available</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">Listed 3 days ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--              -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Earn Eco-Points with Every Transaction</h2>
+            <p class="lead mb-5">Help the environment and get rewarded for sustainable actions</p>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="display-4 fw-bold">5</div>
+                    <p>Points for selling an item</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="display-4 fw-bold">3</div>
+                    <p>Points for buying used</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="display-4 fw-bold">10</div>
+                    <p>Points for donating</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="display-4 fw-bold">20</div>
+                    <p>Points for referring a friend</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-light btn-lg mt-4 px-4">Learn About Rewards</a>
+        </div>
+    </section>
+
+    <!-- ҳ   -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="fw-bold mb-3">Uniswap Nest</h5>
+                    <p>The sustainable marketplace for Sussex University students to buy, sell and trade secondhand items.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Browse</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Sell</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="fw-bold mb-3">Help & Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Safety Tips</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold mb-3">University Partners</h5>
+                    <p>Currently serving Sussex University students. Expanding to other universities soon.</p>
+                    <a href="#" class="btn btn-outline-light">Partner With Us</a>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Uniswap Nest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        //      ֤ʾ  
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            //   ֤  ѧ    
+            if (!email.endsWith('@sussex.ac.uk')) {
+                alert('Please use your Sussex University email address');
+                return;
+            }
+            
+            //   ֤    ƥ  
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            //   ֤   볤  
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters');
+                return;
+            }
+            
+            //     Ӧ    ʵ ʵ ע   ߼ 
+            console.log('Registering with:', email);
+            alert('Registration successful! Please check your email for verification.');
+            
+            //  ر ģ̬  
+            const modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            modal.hide();
+        });
+        
+        //   ¼       
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            //     Ӧ    ʵ ʵĵ ¼ ߼ 
+            console.log('Logging in with:', email);
+            alert('Login successful! Redirecting...');
+            
+            //  ر ģ̬  
+            const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            modal.hide();
+        });
+        
+        // ģ    Ʒ   
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                console.log('Viewing item:', title);
+                //   ʵ  Ӧ   У     ᵼ      Ʒ    ҳ
+            });
+        });
+    </script>
+</body>
+</html>
